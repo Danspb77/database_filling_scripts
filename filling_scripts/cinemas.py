@@ -83,5 +83,12 @@ for _ in range(len(cinema_names)):
 # Фиксируем изменения в базе данных
 conn.commit()
 
+cursor.execute("select * from cinemas")
+cinemas=cursor.fetchall()
+
+for cinema in cinemas:
+    print(cinema)
+
+
 # Закрываем соединение с базой данных
 conn.close()
