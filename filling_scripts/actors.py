@@ -68,5 +68,12 @@ for _ in range(len(actors)):
 # Фиксируем изменения в базе данных
 conn.commit()
 
+cursor.execute("select * from actors")
+
+actors=cursor.fetchall()
+
+for actor in actors:
+    print(actor)
+
 # Закрываем соединение с базой данных
 conn.close()
