@@ -1,45 +1,29 @@
 import sqlite3
 import random
 
+# Connect to the SQLite database
 conn = sqlite3.connect('/home/kali/Documents/education/HOD/hod.db')
 cursor = conn.cursor()
 
-# режиссёр ссылается на фильмы
-
+# Drop the 'directors' table if it exists
 cursor.execute('''DROP TABLE IF EXISTS directors''')
 
+# Create the 'directors' table
 cursor.execute('''CREATE TABLE IF NOT EXISTS directors
-(director_id INTEGER PRIMARY KEY ,
-name TEXT,
-country TEXT,
-age INTEGER,
-FOREIGN KEY (director_id) REFERENCES movies(id))
+                  (director_id INTEGER PRIMARY KEY,
+                  name TEXT,
+                  country TEXT,
+                  age INTEGER)
+               ''')
 
-''')
-
+# List of countries
 countries = ['USA', 'UK', 'Canada', 'Australia', 'Germany', 'France', 'Russia', 'China', 'Japan', 'Brazil']
 
 directors = [
-    "Steven Spielberg",
-    "Martin Scorsese",
-    "Christopher Nolan",
-    "Quentin Tarantino",
-    "Alfred Hitchcock",
-    "Stanley Kubrick",
-    "Francis Ford Coppola",
-    "James Cameron",
-    "Ridley Scott",
-    "Woody Allen",
-    "Pedro Almodóvar",
-    "Ang Lee",
-    "Guillermo del Toro",
-    "Wes Anderson",
-    "Coen Brothers",
-    "David Fincher",
-    "Tim Burton",
-    "Sofia Coppola",
-    "Denis Villeneuve",
-    "Akira Kurosawa"
+    "Steven Spielberg", "Martin Scorsese", "Christopher Nolan", "Quentin Tarantino", "Alfred Hitchcock",
+    "Stanley Kubrick", "Francis Ford Coppola", "James Cameron", "Ridley Scott", "Woody Allen",
+    "Pedro Almodóvar", "Ang Lee", "Guillermo del Toro", "Wes Anderson", "Coen Brothers",
+    "David Fincher", "Tim Burton", "Sofia Coppola", "Denis Villeneuve", "Akira Kurosawa"
 ]
 
 
@@ -51,5 +35,10 @@ for _ in range(10):
 
 conn.commit()
 
-# Закрываем соединение с базой данных
+cursor.execute("select * from directors")
+directors= cursor.fetchall()
+
+for director in directors:
+    print(director)
+
 conn.close()
