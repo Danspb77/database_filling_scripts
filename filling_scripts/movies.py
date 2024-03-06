@@ -22,7 +22,7 @@ director_id=random.randint(1,7)
 release_year= random.randint(1950,2020)
 
 genres=['Drama','Crime''Sci-Fi','Comedy','Fantasy']
-genre=genres[random.randint(0,len(genres))]
+genre=genres[random.randint(0,len(genres)-1)]
 
 titles = [
     "Tenet",
@@ -69,11 +69,11 @@ cursor = conn.cursor()
 cursor.execute("SELECT * FROM movies")
 
 # Получаем все строки результата
-фильмы_2021 = cursor.fetchall()
+films_2021 = cursor.fetchall()
 
 # Выводим результат на экран
-for фильм in фильмы_2021:
-    print(фильм)
+for film in films_2021:
+    print(film)
 
 # Закрываем соединение
 conn.close()
