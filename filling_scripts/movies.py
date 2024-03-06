@@ -16,7 +16,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS movies
                   
                   ''')
 
-cursor.execute('DELETE  FROM movies')
+
 
 director_id=random.randint(1,7)
 release_year= random.randint(1950,2020)
@@ -56,24 +56,24 @@ for _ in range(len(titles)):
 
 
 
-#  cursor.executemany('INSERT INTO movies (title, genre, release_year,director_id) VALUES (?, ?, ?,?)', movies)
+
 
 
 # Сохраняем изменения
 conn.commit()
 
-# Создаем курсор для выполнения операций с базой данных
+
 cursor = conn.cursor()
 
-# Выполняем SQL-запрос для выборки всех фильмов 2021 года
+
 cursor.execute("SELECT * FROM movies")
 
-# Получаем все строки результата
-films_2021 = cursor.fetchall()
+
+films = cursor.fetchall()
 
 # Выводим результат на экран
-for film in films_2021:
+for film in films:
     print(film)
 
-# Закрываем соединение
+
 conn.close()
